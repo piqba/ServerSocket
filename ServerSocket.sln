@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSocket", "src\ServerSocket\ServerSocket.csproj", "{64CC3BDC-AD6F-460F-AC59-0C15E07FF7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSocketLibrary", "src\ServerSocket\ServerSocketLibrary.csproj", "{64CC3BDC-AD6F-460F-AC59-0C15E07FF7EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C03F736-8E9C-4222-8890-FB1C16642CDC}"
 EndProject

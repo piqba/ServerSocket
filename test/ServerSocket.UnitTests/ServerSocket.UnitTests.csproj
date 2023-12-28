@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ServerSocket\ServerSocketLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

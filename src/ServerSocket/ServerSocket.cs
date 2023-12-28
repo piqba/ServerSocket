@@ -27,7 +27,7 @@ public class ServerSocket(
     /// <summary>
     /// Server IP address, its optional, default is any local IP address
     /// </summary>
-    public string ServerIP { get; set; } = IPAddress.Loopback.ToString();
+    public string ServerIP { get; set; } = string.Empty;
 
     /// <summary>
     /// Listen for incoming connections
@@ -54,25 +54,28 @@ public class ServerSocket(
     }
 
     #region Private Methods
+
     private IPAddress CheckAndReturnServerAddress()
     {
         if (!IsPortAvailable(_portListening))
             throw new Exception($"Port {_portListening} is not available");
 
-        IPAddress? propertyAddress;
-        try
+        if (!string.IsNullOrEmpty(ServerIP))
         {
-            propertyAddress = IPAddress.Parse(ServerIP);
+            try
+            {
+                return IPAddress.Parse(ServerIP);
+            }
+            catch (FormatException)
+            {
+                throw new Exception($"Server ip {ServerIP} not in the correct format."); ;
+            }
         }
-        catch (FormatException)
+        else
         {
-            throw new Exception($"Server ip {ServerIP} not in the correct format."); ;
+            return GetLocalIP()
+            ?? throw new Exception("Local IP address not found");
         }
-
-        // Get local ip address
-        return IPAddress.IsLoopback(propertyAddress) ? GetLocalIP()
-            ?? throw new Exception("Local IP address not found")
-            : propertyAddress;
     }
     private static bool IsPortAvailable(int port)
     {
