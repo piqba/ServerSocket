@@ -1,4 +1,3 @@
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -21,7 +20,7 @@ public class ServerSocketTests
         Task.Run(() => serverSocket.Listen(cancellationTokenSource.Token));
         // Simulate a client connection
         var clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        clientSocket.Connect(IPAddress.Loopback, 4567);
+        clientSocket.Connect("127.0.0.1", 4567);
         Task.Delay(200).Wait();
 
         // Assert
@@ -50,7 +49,7 @@ public class ServerSocketTests
         Task.Run(() => serverSocket.Listen(cancellationTokenSource.Token));
         // Simulate a client connection
         var clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        clientSocket.Connect(IPAddress.Loopback, 4570);
+        clientSocket.Connect("127.0.0.1", 4570);
         clientSocket.Send(Encoding.ASCII.GetBytes("Hello World"));
         Task.Delay(200).Wait();
 
@@ -80,7 +79,7 @@ public class ServerSocketTests
         Task.Run(() => serverSocket.Listen(cancellationTokenSource.Token));
         // Simulate a client connection
         var clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        clientSocket.Connect(IPAddress.Loopback, 4569);
+        clientSocket.Connect("127.0.0.1", 4569);
         clientSocket.Disconnect(true);
         // Clean up
         cancellationTokenSource.Cancel();
