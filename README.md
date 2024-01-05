@@ -13,7 +13,7 @@ var serverSocket = new ServerSocket(PortListening: 4567, SocketBufferSize: 1024)
 };
 serverSocket.ConnectedClient += (client) => Console.WriteLine($"Client connected: {client}");
 serverSocket.DisconnectedClient += (client) => Console.WriteLine($"Client disconnected: {client}");
-serverSocket.DataReceived += (data) => Console.WriteLine($"Data received: {data}");
+serverSocket.DataReceived += (data, clientId) => Console.WriteLine($"Data received: {data} from client: {clientId}");
 await serverSocket.Listen(new CancellationToken());
 ```
 
