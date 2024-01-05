@@ -11,7 +11,7 @@ public class ServerSocket(
     /// <summary>
     /// Event raised when data is received
     /// </summary>
-    public event Action<string> DataReceived;
+    public event Action<string, string> DataReceived;
     /// <summary>
     /// Event raised when a client is disconnected, return the client IP address
     /// </summary>
@@ -111,7 +111,8 @@ public class ServerSocket(
                     }
 
                     var clientData = DecodeMessage(buffer, bytesRead, EncodingType);
-                    DataReceived?.Invoke(clientData);
+                    var clientId = clientSocket.RemoteEndPoint!.ToString()!;
+                    DataReceived?.Invoke(clientData, clientId);
                 }
                 catch (SocketException)
                 {

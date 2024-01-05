@@ -43,7 +43,7 @@ public class ServerSocketTests
         {
             ServerIP = "127.0.0.1"
         };
-        serverSocket.DataReceived += (client) => contMessages++;
+        serverSocket.DataReceived += (data, clientID) => contMessages++;
 
         // Act
         Task.Run(() => serverSocket.Listen(cancellationTokenSource.Token));
